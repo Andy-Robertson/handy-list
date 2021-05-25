@@ -9,7 +9,7 @@ function addListItem() {
     id: Date.now(),
   };
 
-  handyListItems.push(listItems);
+  handyListItems.push(listItem);
   console.log(handyListItems);
 }
 
@@ -32,3 +32,35 @@ form.addEventListener("submit", (event) => {
     input.focus();
   }
 });
+
+function renderListItem(listItem) {
+  // Selects the first item with a class of '.js-todo-list'
+  const list = document.querySelector(".handyList");
+
+  // Checks if 'handylist.checked' is true using ternary operator
+  // Assigns done to 'isChecked'. otherwise assigns an empty string
+  const isChecked = handyList.checked ? "done" : "";
+
+  // Create an 'li' and assign it to 'node'
+  const node = document.createElement("li");
+
+  // Set class attribute
+  node.setAttribute("class", `handyListItem ${isChecked}`);
+
+  // Set the data-key attribute to the id of the list item
+  node.setAttribute("dataKey", handylist.id);
+
+  // Set the contents of the `li` created above
+  node.innerHTML = `
+<input id="${handyList.id}" type="checkbox"/>
+<label for="f${handyList.id}" class="tick checked"></label>
+<span>${handyList.text}</span>
+<button class="deleteListItem jsDeleteItem">
+<svg><use href="#deleteIcon"></use></svg>
+</button>
+`;
+
+  // Append element to DOM as the last child of the element
+  // referenced by `list` variable
+  list.append(node);
+}
