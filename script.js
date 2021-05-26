@@ -64,3 +64,23 @@ function renderListItem(listItem) {
   // referenced by `list` variable
   list.append(node);
 }
+
+// Select the entire list
+const list = document.querySelector("handyList");
+
+// Add a click event listener to the list and its children
+list.addEventListener("click", (event) => {
+  if (event.target.classList.contains("checked")) {
+    const itemKey = event.target.parentElement.dataset.key;
+    toggleDone(itemKey);
+  }
+});
+
+function toggleDone(key) {
+  // Returns the position of an element in the array
+  const index = handyListItems.findIndex((item) => item.id === Number(key));
+
+  // Locate teh todo item in the todoItems array and set its checked property to the opposite.
+  handyListItems[index].checked = !handyListItems[index].checked;
+  renderTodo(handyListItems[index]);
+}
